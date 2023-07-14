@@ -18,7 +18,7 @@ uint8_t* loadFile(const bx::FilePath& filePath)
 	int32_t fileSize = (int32_t)reader.seek(0, bx::Whence::End);
 	reader.seek(0, bx::Whence::Begin);
 
-	uint8_t* buffer = (uint8_t*)BX_ALLOC(&g_Allocator, fileSize + 1);
+	uint8_t* buffer = (uint8_t*)bx::alloc(&g_Allocator, fileSize + 1);
 	reader.read(buffer, fileSize, &err);
 	buffer[fileSize] = 0;
 
@@ -56,7 +56,7 @@ bool testParser(const char* filename)
 
 	ssvg::imageDestroy(img);
 
-	BX_FREE(&g_Allocator, svgFileBuffer);
+	bx::free(&g_Allocator, svgFileBuffer);
 
 	return true;
 }
@@ -182,7 +182,7 @@ bool testRoundTrip(const char* input, const char* output)
 
 	ssvg::imageDestroy(img);
 
-	BX_FREE(&g_Allocator, svgFileBuffer);
+	bx::free(&g_Allocator, svgFileBuffer);
 
 	return true;
 }

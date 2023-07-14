@@ -1040,7 +1040,7 @@ static bool parseShape_Text(ParserState* parser, Shape* text)
 	}
 
 	const uint32_t txtLen = (uint32_t)(parser->m_Ptr - txtPtr);
-	text->m_Text.m_String = (char*)BX_ALLOC(s_Allocator, sizeof(char) * (txtLen + 1));
+	text->m_Text.m_String = (char*)bx::alloc(s_Allocator, sizeof(char) * (txtLen + 1));
 	bx::memCopy(text->m_Text.m_String, txtPtr, txtLen);
 	text->m_Text.m_String[txtLen] = 0;
 #endif
